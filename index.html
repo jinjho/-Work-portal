@@ -206,12 +206,13 @@
   .badge.dept{background:#eef4ff;color:#3b6fe0;}
   .badge.eval{background:#f1ecff;color:#7c4dff;}
   .sched-item .label{flex:1;}
-  .sched-item .icon-btn{
+  .icon-btn{
     border:none;background:none;color:var(--text-dim);cursor:pointer;
     font-size:12px;padding:2px 5px;flex:none;border-radius:4px;
   }
-  .sched-item .icon-btn:hover{background:var(--bg);color:var(--text);}
-  .sched-item .icon-btn.del-btn:hover{color:var(--red);}
+  .icon-btn:hover{background:var(--bg);color:var(--text);}
+  .icon-btn.del-btn:hover{color:var(--red);}
+  .guidance-table .icon-btn[data-guidance-del-student]:hover{color:var(--red);}
 
   /* empty state */
   .empty{
@@ -814,7 +815,7 @@
           <div id="guidance-excel-status" style="font-size:11px;color:var(--text-dim);margin-bottom:6px;"></div>
           <div style="max-height:480px;overflow:auto;">
             <table class="guidance-table">
-              <thead><tr><th>반</th><th>번</th><th>이름</th><th style="text-align:center;">지적</th></tr></thead>
+              <thead><tr><th>반</th><th>번</th><th>이름</th><th style="text-align:center;">지적</th><th style="text-align:center;">관리</th></tr></thead>
               <tbody id="guidance-student-tbody"></tbody>
             </table>
           </div>
@@ -1386,8 +1387,12 @@ function renderGuidanceStudentList(){
     <tr class="${s.id === guidanceSelectedStudentId ? "selected-row" : ""}" data-guidance-student="${s.id}">
       <td>${s.cls}</td><td>${s.no}</td><td>${s.name}</td>
       <td style="text-align:center;font-weight:700;${count > 0 ? "color:var(--red);" : ""}">${count}</td>
+      <td style="text-align:center;white-space:nowrap;">
+        <button type="button" class="icon-btn" data-guidance-edit-student="${s.id}" title="수정">✎</button>
+        <button type="button" class="icon-btn" data-guidance-del-student="${s.id}" title="삭제">삭제</button>
+      </td>
     </tr>`;
-  }).join("") : `<tr><td colspan="4" class="empty">등록된 학생이 없습니다.</td></tr>`;
+  }).join("") : `<tr><td colspan="5" class="empty">등록된 학생이 없습니다.</td></tr>`;
 }
 
 function renderGuidanceDetail(){
@@ -1606,6 +1611,42 @@ document.getElementById("btn-guidance-excel-template").addEventListener("click",
 
 // 학생 선택
 document.getElementById("guidance-student-tbody").addEventListener("click", (e) => {
+  const editBtn = e.target.closest("[data-guidance-edit-student]");
+  if(editBtn){
+    const student = DATA.guidanceStudents.find(s => s.id === editBtn.dataset.guidanceEditStudent);
+    if(!student) return;
+    openModal("학생 정보 수정", [
+      {key:"cls",  label:"반", value:student.cls, placeholder:"예: 1반"},
+      {key:"no",   label:"번호", value:String(student.no), placeholder:"예: 3"},
+      {key:"name", label:"이름", value:student.name, placeholder:"예: 홍길동"},
+    ], (v) => {
+      if(!v.cls || !v.no || !v.name) return;
+      student.cls = v.cls;
+      student.no = parseInt(v.no, 10) || student.no;
+      student.name = v.name;
+      refreshGuidanceAll();
+      fsSave("guidanceStudents");
+    });
+    return;
+  }
+  const delBtn = e.target.closest("[data-guidance-del-student]");
+  if(delBtn){
+    const id = delBtn.dataset.guidanceDelStudent;
+    const student = DATA.guidanceStudents.find(s => s.id === id);
+    if(!student) return;
+    const recordCount = guidanceCount(id);
+    const msg = recordCount > 0
+      ? `${student.cls} ${student.no}번 ${student.name} 학생을 삭제할까요?\n이 학생의 지적 기록 ${recordCount}건도 함께 삭제됩니다.`
+      : `${student.cls} ${student.no}번 ${student.name} 학생을 삭제할까요?`;
+    if(!confirm(msg)) return;
+    DATA.guidanceStudents = DATA.guidanceStudents.filter(s => s.id !== id);
+    DATA.guidanceRecords = DATA.guidanceRecords.filter(r => r.studentId !== id);
+    if(guidanceSelectedStudentId === id) guidanceSelectedStudentId = null;
+    refreshGuidanceAll();
+    fsSave("guidanceStudents");
+    fsSave("guidanceRecords");
+    return;
+  }
   const row = e.target.closest("[data-guidance-student]");
   if(!row) return;
   guidanceSelectedStudentId = row.dataset.guidanceStudent;
