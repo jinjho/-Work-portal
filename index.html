@@ -920,8 +920,8 @@ const FS_COLLECTION = "workPortalData"; // Firestore 안의 컬렉션 이름 (�
     이후에는 Firestore의 최신 데이터로 자동 교체됩니다.)
    ========================================================= */
 const DATA = {
-  today: new Date(2026, 7, 7), // 2026-08-07
-  semesterStartForDday: new Date(2026, 6, 21),
+  today: (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })(), // 항상 오늘 실제 날짜 (자정 기준)
+  semesterStartForDday: new Date(2026, 6, 21), // 2학기 개학 등 기준일 — 필요시 여기만 수정
 
   schedule: [
     {date:"08/15(토)", type:"holiday", label:"광복절"},
