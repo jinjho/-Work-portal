@@ -245,56 +245,38 @@
   .notice-card{background:#fff7f2;border:1px solid #ffe2cf;}
   .notice-card ul{margin:0;padding-left:18px;font-size:13px;line-height:1.7;}
 
-  /* ---------- link blocks (2x3 grid per category, source-style) ---------- */
-  .link-blocks-outer{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  .link-block{
-    border:1px solid var(--border);border-radius:8px;overflow:hidden;
-    display:flex;flex-direction:column;background:#fff;min-height:170px;
+  /* ---------- link collection (카테고리별 가로 나열, 실제 사이트 스타일) ---------- */
+  .link-collection .link-cat{margin-bottom:20px;}
+  .link-collection .link-cat:last-child{margin-bottom:0;}
+  .link-cat-header{
+    display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--text-dim);
+    margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);
   }
-  .link-block-hdr{
-    display:flex;align-items:center;justify-content:space-between;gap:6px;
-    padding:6px 9px;background:var(--bg);border-bottom:1px solid var(--border);
+  .link-cat-header .cat-name{cursor:pointer;}
+  .link-cat-header .cat-name:hover{color:var(--accent);}
+  .link-cat-header .del-cat-x{
+    opacity:0;border:none;background:none;color:var(--text-dim);font-size:11px;cursor:pointer;margin-left:auto;
   }
-  .link-block-hdr .name{
-    font-size:11px;font-weight:800;color:var(--text-dim);cursor:pointer;
-    flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  .link-cat-header:hover .del-cat-x{opacity:1;}
+  .link-cat-tiles{display:flex;flex-wrap:wrap;gap:10px;}
+  .link-tile3{
+    position:relative;width:148px;border:1px solid var(--border);border-radius:10px;
+    padding:16px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;font-size:12.5px;text-align:center;background:#fff;cursor:pointer;
   }
-  .link-block-hdr .name:hover{color:var(--accent);}
-  .link-block-hdr .add-btn{
-    width:18px;height:18px;border-radius:50%;border:none;flex:none;
-    background:var(--accent);color:#fff;font-size:13px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;line-height:1;
-  }
-  .link-block-hdr .add-btn:hover{background:var(--navy);}
-  .link-block-grid{
-    flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);
-    gap:5px;padding:6px;
-  }
-  .link-tile2{
-    position:relative;border:1px solid var(--border);border-radius:8px;
-    padding:6px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:3px;font-size:10.5px;text-align:center;background:#fff;min-height:0;overflow:hidden;
-  }
-  .link-tile2:hover{border-color:var(--accent);background:var(--accent-soft);}
-  .link-tile2:not(.add-slot){cursor:pointer;}
-  .link-tile2 .ic{font-size:16px;line-height:1;}
-  .link-tile2 .nm{
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-    line-height:1.25;word-break:keep-all;
-  }
-  .link-tile2 .actions{position:absolute;top:2px;right:2px;display:flex;gap:2px;opacity:0;transition:opacity .15s;}
-  .link-tile2:hover .actions{opacity:1;}
-  .link-tile2 .act-btn{
-    width:15px;height:15px;border:none;border-radius:3px;font-size:8.5px;cursor:pointer;
+  .link-tile3:hover{border-color:var(--accent);background:var(--accent-soft);}
+  .link-tile3 .ic{font-size:24px;line-height:1;}
+  .link-tile3 .nm{font-weight:600;word-break:keep-all;line-height:1.3;}
+  .link-tile3 .actions{position:absolute;top:6px;right:6px;display:flex;gap:3px;opacity:0;transition:opacity .15s;}
+  .link-tile3:hover .actions{opacity:1;}
+  .link-tile3 .act-btn{
+    width:18px;height:18px;border:none;border-radius:4px;font-size:9px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;flex:none;
   }
-  .link-tile2 .act-edit{background:#dbeafe;color:#1d4ed8;}
-  .link-tile2 .act-del{background:#fee2e2;color:#dc2626;}
-  .link-tile2.add-slot{
-    border-style:dashed;color:#c7cbe6;cursor:pointer;font-size:17px;background:#fff;
-  }
-  .link-tile2.add-slot:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);}
-  .link-blocks-footer{margin-top:8px;text-align:right;}
+  .link-tile3 .act-edit{background:#dbeafe;color:#1d4ed8;}
+  .link-tile3 .act-del{background:#fee2e2;color:#dc2626;}
+  .link-tile3.add-slot{border-style:dashed;color:#c7cbe6;font-size:22px;}
+  .link-tile3.add-slot:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);}
 
   /* table */
   table{width:100%;border-collapse:collapse;font-size:13px;}
@@ -634,11 +616,9 @@
         <div class="card link-section">
           <div class="card-head">
             <h3>🔗 링크 및 참고자료</h3>
+            <button class="btn btn-primary" id="btn-home-add-block">+ 추가</button>
           </div>
-          <div class="link-blocks-outer" id="home-link-blocks"><!-- JS로 채워짐 --></div>
-          <div class="link-blocks-footer">
-            <button class="btn" id="btn-home-add-block">+ 카테고리 추가</button>
-          </div>
+          <div class="link-collection" id="home-link-blocks"><!-- JS로 채워짐 --></div>
         </div>
       </div>
     </div>
@@ -770,11 +750,9 @@
         <div class="card link-section">
           <div class="card-head">
             <h3>🔗 링크 모음</h3>
+            <button class="btn btn-primary" id="btn-grade-add-block">+ 추가</button>
           </div>
-          <div class="link-blocks-outer" id="grade-link-blocks"><!-- JS로 채워짐 --></div>
-          <div class="link-blocks-footer">
-            <button class="btn" id="btn-grade-add-block">+ 카테고리 추가</button>
-          </div>
+          <div class="link-collection" id="grade-link-blocks"><!-- JS로 채워짐 --></div>
         </div>
       </div>
 
@@ -1817,7 +1795,7 @@ function renderLinkBlocks(dataKey, containerId){
   const el = document.getElementById(containerId);
   el.innerHTML = blocks.map((blk, bi) => {
     const tiles = blk.links.map((l, li) => `
-      <div class="link-tile2" data-blockkey="${dataKey}" data-block="${bi}" data-link="${li}">
+      <div class="link-tile3" data-blockkey="${dataKey}" data-block="${bi}" data-link="${li}">
         <span class="actions">
           <button type="button" class="act-btn act-edit" data-act="edit-link" data-blockkey="${dataKey}" data-block="${bi}" data-link="${li}">✎</button>
           <button type="button" class="act-btn act-del" data-act="del-link" data-blockkey="${dataKey}" data-block="${bi}" data-link="${li}">×</button>
@@ -1826,18 +1804,14 @@ function renderLinkBlocks(dataKey, containerId){
         <div class="nm">${l.name}</div>
       </div>
     `).join("");
-    const emptySlots = Math.max(0, 6 - blk.links.length);
-    const addTiles = emptySlots > 0
-      ? `<div class="link-tile2 add-slot" data-blockkey="${dataKey}" data-block="${bi}" data-act="add-link">＋</div>`.repeat(1)
-        + `<div class="link-tile2" style="visibility:hidden;"></div>`.repeat(Math.max(0, emptySlots - 1))
-      : "";
+    const addTile = `<div class="link-tile3 add-slot" data-blockkey="${dataKey}" data-block="${bi}" data-act="add-link">＋</div>`;
     return `
-      <div class="link-block">
-        <div class="link-block-hdr">
-          <span class="name" data-blockkey="${dataKey}" data-block="${bi}" data-act="rename-block" title="클릭하면 이름 변경">${blk.name}</span>
-          <button type="button" class="add-btn" data-blockkey="${dataKey}" data-block="${bi}" data-act="add-link" title="링크 추가">+</button>
+      <div class="link-cat">
+        <div class="link-cat-header">
+          <span class="cat-name" data-blockkey="${dataKey}" data-block="${bi}" data-act="rename-block" title="클릭하면 이름 변경">${blk.name}</span>
+          <button type="button" class="del-cat-x" data-blockkey="${dataKey}" data-block="${bi}" data-act="del-block" title="카테고리 삭제">✕ 카테고리 삭제</button>
         </div>
-        <div class="link-block-grid">${tiles}${addTiles}</div>
+        <div class="link-cat-tiles">${tiles}${addTile}</div>
       </div>
     `;
   }).join("");
@@ -2658,7 +2632,7 @@ function bindLinkBlockEvents(containerId){
     const t = e.target.closest("[data-act]");
     if(!t){
       // 액션 버튼이 아닌 타일 본문 클릭 → 등록된 URL로 새 탭 열기
-      const tile = e.target.closest(".link-tile2:not(.add-slot)");
+      const tile = e.target.closest(".link-tile3:not(.add-slot)");
       if(!tile || !tile.dataset.blockkey) return;
       const dataKey = tile.dataset.blockkey, bi = +tile.dataset.block, li = +tile.dataset.link;
       const link = DATA[dataKey]?.[bi]?.links?.[li];
@@ -2683,6 +2657,11 @@ function bindLinkBlockEvents(containerId){
         renderLinkBlocks(dataKey, containerId);
         fsSave(dataKey);
       });
+    } else if(act === "del-block"){
+      if(!confirm(`"${DATA[dataKey][bi].name}" 카테고리를 삭제할까요? 안의 링크도 함께 삭제됩니다.`)) return;
+      DATA[dataKey].splice(bi, 1);
+      renderLinkBlocks(dataKey, containerId);
+      fsSave(dataKey);
     } else if(act === "add-link"){
       openModal("링크 추가", [
         {key:"name", label:"사이트 이름", placeholder:"예: 교육청"},
@@ -2690,7 +2669,6 @@ function bindLinkBlockEvents(containerId){
         {key:"icon", label:"아이콘(이모지, 선택)", placeholder:"🔗"},
       ], (v) => {
         if(!v.name) return;
-        if(DATA[dataKey][bi].links.length >= 6){ alert("한 카테고리에는 최대 6개까지 등록할 수 있습니다."); return; }
         let url = v.url || "";
         if(url && !/^https?:\/\//i.test(url)) url = "https://" + url;
         DATA[dataKey][bi].links.push({icon:v.icon || "🔗", name:v.name, url});
@@ -2698,7 +2676,7 @@ function bindLinkBlockEvents(containerId){
         fsSave(dataKey);
       });
     } else if(act === "edit-link"){
-      const tile = t.closest(".link-tile2");
+      const tile = t.closest(".link-tile3");
       const li = +tile.dataset.link;
       const link = DATA[dataKey][bi].links[li];
       openModal("링크 수정", [
@@ -2714,7 +2692,7 @@ function bindLinkBlockEvents(containerId){
         fsSave(dataKey);
       });
     } else if(act === "del-link"){
-      const tile = t.closest(".link-tile2");
+      const tile = t.closest(".link-tile3");
       const li = +tile.dataset.link;
       DATA[dataKey][bi].links.splice(li, 1);
       renderLinkBlocks(dataKey, containerId);
