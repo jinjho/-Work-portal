@@ -441,25 +441,104 @@
   .gtask-table td.gt-manage{white-space:nowrap;}
   .gtask-table .icon-btn{font-size:12px;}
 
+  /* ---------- 업무 정보 : 왼쪽 사이드바 레이아웃 ---------- */
+  .wi-shell{display:flex;gap:16px;align-items:flex-start;}
+  .wi-sidebar{
+    width:170px;flex:none;display:flex;flex-direction:column;gap:2px;
+    background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px;
+  }
+  .wi-sidebar button{
+    text-align:left;border:none;background:none;padding:10px 12px;border-radius:7px;
+    font-size:13px;color:var(--text-dim);cursor:pointer;font-family:inherit;
+  }
+  .wi-sidebar button:hover{background:var(--bg);color:var(--text);}
+  .wi-sidebar button.active{background:var(--navy);color:#fff;font-weight:700;}
+  .wi-content{flex:1;min-width:0;}
+
+  /* ---------- 업무 정보 : 주간/월간 계획 ---------- */
+  .planner-toolbar{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    padding:14px 16px;
+  }
+  .planner-mode-row{display:flex;gap:4px;}
+  .planner-nav{display:flex;align-items:center;gap:8px;}
+  table.planner-table{border-collapse:collapse;width:100%;font-size:12px;table-layout:fixed;}
+  table.planner-table th,table.planner-table td{border:1px solid var(--border);padding:6px;vertical-align:top;}
+  table.planner-table thead th{background:var(--navy);color:#fff;text-align:center;font-size:12px;padding:8px 6px;}
+  table.planner-table thead th .pl-date{display:block;font-size:10px;font-weight:400;color:#c7cae8;}
+  table.planner-table thead th.pl-today-col{background:var(--accent);}
+  table.planner-table td.pl-dept-col,table.planner-table th.pl-dept-col{
+    width:96px;background:#fafbff;font-weight:700;text-align:left;padding-left:10px;color:var(--text-dim);font-size:11.5px;
+  }
+  table.planner-table tr.pl-sched-row td.pl-dept-col{color:var(--accent);}
+  table.planner-table tr.pl-sched-row td{background:var(--accent-soft);}
+  table.planner-table td.pl-cell{min-height:44px;position:relative;}
+  .pl-item{
+    background:#eef4ff;color:#3b6fe0;border-radius:5px;padding:3px 6px;font-size:11px;margin-bottom:3px;
+    cursor:pointer;word-break:keep-all;
+  }
+  .pl-item:hover{background:#dbe8ff;}
+  .pl-sched-row .pl-item{background:#fff;color:var(--accent);font-weight:700;cursor:default;}
+  .pl-add-btn{
+    width:100%;border:1px dashed var(--border);background:none;border-radius:5px;color:#c7cbe6;
+    font-size:12px;padding:2px 0;cursor:pointer;
+  }
+  .pl-add-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);}
+
+  table.planner-month-table{border-collapse:collapse;width:100%;font-size:12.5px;}
+  table.planner-month-table th{
+    background:var(--navy);color:#fff;font-size:11px;padding:8px 6px;text-align:left;
+  }
+  table.planner-month-table td{padding:8px 6px;border-bottom:1px solid var(--border);}
+  table.planner-month-table td.pm-date{white-space:nowrap;font-weight:700;color:var(--text-dim);width:90px;}
+  table.planner-month-table td.pm-dept{white-space:nowrap;width:100px;color:var(--accent);font-weight:600;}
+  table.planner-month-table td.pm-manage{width:60px;white-space:nowrap;}
+
   /* ---------- 업무 정보 : 시간표 ---------- */
-  .workinfo-layout{display:flex;gap:16px;align-items:flex-start;}
+  .workinfo-layout{display:flex;flex-direction:column;gap:16px;}
   .tt-wrap{flex:1;min-width:0;overflow:auto;max-height:600px;border-radius:8px;}
-  table.tt-table{border-collapse:collapse;font-size:11px;white-space:nowrap;}
+  table.tt-table{border-collapse:collapse;font-size:10px;white-space:nowrap;}
   table.tt-table th,table.tt-table td{
-    border:1px solid var(--border);padding:5px 6px;text-align:center;
+    border:1px solid var(--border);padding:3px 4px;text-align:center;
   }
   table.tt-table thead th{
-    background:var(--navy);color:#fff;font-size:11px;font-weight:700;position:sticky;top:0;z-index:2;
+    background:var(--navy);color:#fff;font-size:10px;font-weight:700;position:sticky;top:0;z-index:2;
   }
   table.tt-table thead tr:first-child th{top:0;}
-  table.tt-table thead tr:last-child th{top:26px;background:var(--navy-2);}
+  table.tt-table thead tr:last-child th{top:22px;background:var(--navy-2);}
   table.tt-table td.tt-left{text-align:left;font-weight:700;background:#fafbff;position:sticky;left:0;z-index:1;}
-  table.tt-table td.tt-name{left:70px;}
-  table.tt-table td.tt-cell{font-size:10px;min-width:52px;}
+  table.tt-table td.tt-name{left:58px;}
+  table.tt-table td.tt-cell{font-size:9px;min-width:36px;}
   table.tt-table td.tt-cell .sub{display:block;font-weight:700;}
-  table.tt-table td.tt-cell .cls{display:block;font-size:9px;opacity:.7;}
+  table.tt-table td.tt-cell .cls{display:block;font-size:8px;opacity:.7;}
 
-  .swap-panel{width:270px;flex:none;}
+  /* ---------- 전체 교사 시간표 관리 모달 ---------- */
+  .tt-manage-box{width:min(96vw,1100px);max-height:90vh;}
+  .tt-manage-toolbar{
+    display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:14px;
+  }
+  .tt-manage-toolbar .tt-field{display:flex;flex-direction:column;gap:4px;}
+  .tt-manage-toolbar label{font-size:11px;color:var(--text-dim);font-weight:700;}
+  .tt-manage-toolbar select,.tt-manage-toolbar input{
+    border:1px solid var(--border);border-radius:6px;padding:7px 9px;font-size:12.5px;font-family:inherit;
+  }
+  .tt-manage-toolbar select{min-width:170px;}
+  .tt-manage-toolbar input{width:120px;}
+  .tt-manage-spacer{flex:1;}
+  table.tt-manage-table{border-collapse:collapse;width:100%;font-size:11px;}
+  table.tt-manage-table th,table.tt-manage-table td{border:1px solid var(--border);padding:4px;text-align:center;}
+  table.tt-manage-table thead th{background:var(--navy);color:#fff;font-size:10.5px;white-space:nowrap;}
+  table.tt-manage-table td.tt-manage-p{font-weight:700;background:#fafbff;color:var(--text-dim);width:36px;}
+  table.tt-manage-table td.tt-manage-disabled{background:#f3f4f6;}
+  table.tt-manage-table input{
+    width:100%;border:1px solid transparent;border-radius:4px;padding:3px 4px;font-size:10.5px;
+    text-align:center;font-family:inherit;background:transparent;
+  }
+  table.tt-manage-table input:focus{border-color:var(--accent);background:#fff;outline:none;}
+  table.tt-manage-table input.tt-cell-subject{font-weight:700;margin-bottom:2px;}
+  table.tt-manage-table input.tt-cell-class{color:var(--text-dim);}
+
+  .swap-panel{width:100%;max-width:360px;}
   .swap-panel .card-head h3{font-size:14px;}
   .swap-mode-row{display:flex;gap:6px;margin-bottom:10px;}
   .swap-mode-row .btn{flex:1;}
@@ -679,65 +758,124 @@
   <!-- ============ 업무 정보 ============ -->
   <section class="page" id="page-work-info">
     <h1 class="page-title">🗂 업무 정보</h1>
-    <div class="subtabs" id="workinfo-subtabs">
-      <button class="active" data-sub="timetable">시간표</button>
-      <button data-sub="approval">결재 라인</button>
-    </div>
+    <div class="wi-shell">
+      <nav class="wi-sidebar" id="wi-sidebar">
+        <button class="active" data-wi="timetable">🗓 시간표</button>
+        <button data-wi="planner">📋 주간/월간 계획</button>
+        <button data-wi="duty">🗂 업무 분장</button>
+        <button data-wi="cca">⭐ 창의적 체험활동</button>
+        <button data-wi="shop">🛒 구매 사이트</button>
+        <button data-wi="stats">👥 재학생 통계</button>
+        <button data-wi="daily">🕐 일과 운영</button>
+        <button data-wi="approval">✅ 결재 라인</button>
+      </nav>
 
-    <!-- 서브탭: 시간표 -->
-    <div id="workinfo-panel-timetable" class="workinfo-layout">
-      <div class="card" style="flex:1;min-width:0;padding:0;">
-        <div class="card-head" style="padding:14px 16px;margin-bottom:0;flex-wrap:wrap;gap:8px;">
-          <h3>전체 교사 시간표</h3>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span id="tt-import-status" style="font-size:11.5px;color:var(--text-dim);"></span>
-            <select id="tt-individual-select" style="border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:12.5px;">
-              <option value="">전체 교사 보기</option>
-            </select>
-            <button class="btn" id="btn-tt-print-individual" style="display:none;">🖨 인쇄</button>
-            <button class="btn" id="btn-tt-template">⬇ 템플릿 다운로드</button>
-            <button class="btn btn-primary" id="btn-tt-import">📥 엑셀 가져오기</button>
-            <input type="file" id="tt-excel-input" accept=".xlsx,.xls" style="display:none;">
+      <div class="wi-content">
+        <!-- 시간표 -->
+        <div id="workinfo-panel-timetable" class="wi-panel workinfo-layout">
+          <div class="card" style="flex:1;min-width:0;padding:0;">
+            <div class="card-head" style="padding:14px 16px;margin-bottom:0;flex-wrap:wrap;gap:8px;">
+              <h3>전체 교사 시간표</h3>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <span id="tt-import-status" style="font-size:11.5px;color:var(--text-dim);"></span>
+                <button class="btn" id="btn-tt-template">⬇ 템플릿 다운로드</button>
+                <button class="btn" id="btn-tt-import">📥 엑셀 가져오기</button>
+                <input type="file" id="tt-excel-input" accept=".xlsx,.xls" style="display:none;">
+                <button class="btn btn-primary" id="btn-tt-manage">관리</button>
+                <select id="tt-individual-select" style="border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:12.5px;">
+                  <option value="">개별 출력 — 교사 선택</option>
+                </select>
+                <button class="btn" id="btn-tt-print-individual" style="display:none;">🖨 인쇄</button>
+              </div>
+            </div>
+            <div class="tt-wrap" id="tt-full-wrap"><table class="tt-table" id="teacher-timetable-table"></table></div>
+            <div class="tt-wrap" id="tt-individual-wrap" style="display:none;padding:14px 16px;">
+              <div id="tt-individual-title" style="font-weight:800;font-size:14px;margin-bottom:10px;"></div>
+              <table class="tt-table" id="tt-individual-table"></table>
+            </div>
+          </div>
+          <div class="card swap-panel">
+            <div class="card-head"><h3>수업 추천</h3></div>
+            <div class="swap-mode-row">
+              <button class="btn active" data-mode="exchange" id="swap-mode-exchange">교체</button>
+              <button class="btn" data-mode="substitute" id="swap-mode-substitute">대강</button>
+            </div>
+            <div class="swap-hint" id="swap-hint"></div>
+            <label>교사</label>
+            <select id="swap-teacher"></select>
+            <label>요일</label>
+            <select id="swap-day"></select>
+            <label>교시</label>
+            <select id="swap-period"></select>
+            <button class="btn btn-primary" id="btn-swap-recommend" style="width:100%;margin-top:12px;">추천 보기</button>
+            <div class="swap-results" id="swap-results"></div>
           </div>
         </div>
-        <div class="tt-wrap" id="tt-full-wrap"><table class="tt-table" id="teacher-timetable-table"></table></div>
-        <div class="tt-wrap" id="tt-individual-wrap" style="display:none;padding:14px 16px;">
-          <div id="tt-individual-title" style="font-weight:800;font-size:14px;margin-bottom:10px;"></div>
-          <table class="tt-table" id="tt-individual-table"></table>
-        </div>
-      </div>
-      <div class="card swap-panel">
-        <div class="card-head"><h3>수업 추천</h3></div>
-        <div class="swap-mode-row">
-          <button class="btn active" data-mode="exchange" id="swap-mode-exchange">교체</button>
-          <button class="btn" data-mode="substitute" id="swap-mode-substitute">대강</button>
-        </div>
-        <div class="swap-hint" id="swap-hint"></div>
-        <label>교사</label>
-        <select id="swap-teacher"></select>
-        <label>요일</label>
-        <select id="swap-day"></select>
-        <label>교시</label>
-        <select id="swap-period"></select>
-        <button class="btn btn-primary" id="btn-swap-recommend" style="width:100%;margin-top:12px;">추천 보기</button>
-        <div class="swap-results" id="swap-results"></div>
-      </div>
-    </div>
 
-    <!-- 서브탭: 결재 라인 -->
-    <div id="workinfo-panel-approval" class="ap-layout" style="display:none;">
-      <div class="ap-col-cat">
-        <div class="lbl">카테고리</div>
-        <div id="ap-cat-list"></div>
-        <button class="btn" id="btn-ap-add-cat" style="width:100%;margin-top:6px;background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18);">+ 추가</button>
-      </div>
-      <div class="ap-col-item">
-        <div class="lbl">결재 종류</div>
-        <div id="ap-item-list"></div>
-        <button class="btn" id="btn-ap-add-item" style="width:100%;margin-top:6px;display:none;">+ 추가</button>
-      </div>
-      <div class="ap-col-steps">
-        <div id="ap-step-editor"><div class="empty">왼쪽에서 결재 종류를 선택하세요.</div></div>
+        <!-- 주간/월간 계획 -->
+        <div id="workinfo-panel-planner" class="wi-panel" style="display:none;">
+          <div class="card" style="padding:0;">
+            <div class="planner-toolbar">
+              <div class="planner-mode-row">
+                <button class="btn active" data-planner-mode="week" id="btn-planner-week">주간 보기</button>
+                <button class="btn" data-planner-mode="month" id="btn-planner-month">월간 보기</button>
+              </div>
+              <div class="planner-nav">
+                <button type="button" class="btn" id="btn-planner-prev">‹</button>
+                <span id="planner-label" style="font-weight:800;font-size:14px;min-width:150px;text-align:center;"></span>
+                <button type="button" class="btn" id="btn-planner-next">›</button>
+                <button type="button" class="btn" id="btn-planner-today">오늘</button>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <button type="button" class="btn btn-primary" id="btn-planner-add">+ 계획 입력</button>
+                <button type="button" class="btn" id="btn-planner-print">프린트</button>
+              </div>
+            </div>
+            <div id="planner-week-wrap" style="overflow-x:auto;padding:0 16px 16px;">
+              <table class="planner-table" id="planner-table"></table>
+            </div>
+            <div id="planner-month-wrap" style="display:none;padding:0 16px 16px;">
+              <table class="planner-month-table" id="planner-month-table"></table>
+            </div>
+          </div>
+        </div>
+        <!-- 업무 분장 (준비 중) -->
+        <div id="workinfo-panel-duty" class="wi-panel" style="display:none;">
+          <div class="card"><div class="empty" style="padding:70px 10px;">🗂 업무 분장 — 준비 중입니다.</div></div>
+        </div>
+        <!-- 창의적 체험활동 (준비 중) -->
+        <div id="workinfo-panel-cca" class="wi-panel" style="display:none;">
+          <div class="card"><div class="empty" style="padding:70px 10px;">⭐ 창의적 체험활동 — 준비 중입니다.</div></div>
+        </div>
+        <!-- 구매 사이트 (준비 중) -->
+        <div id="workinfo-panel-shop" class="wi-panel" style="display:none;">
+          <div class="card"><div class="empty" style="padding:70px 10px;">🛒 구매 사이트 — 준비 중입니다.</div></div>
+        </div>
+        <!-- 재학생 통계 (준비 중) -->
+        <div id="workinfo-panel-stats" class="wi-panel" style="display:none;">
+          <div class="card"><div class="empty" style="padding:70px 10px;">👥 재학생 통계 — 준비 중입니다.</div></div>
+        </div>
+        <!-- 일과 운영 (준비 중) -->
+        <div id="workinfo-panel-daily" class="wi-panel" style="display:none;">
+          <div class="card"><div class="empty" style="padding:70px 10px;">🕐 일과 운영 — 준비 중입니다.</div></div>
+        </div>
+
+        <!-- 결재 라인 -->
+        <div id="workinfo-panel-approval" class="wi-panel ap-layout" style="display:none;">
+          <div class="ap-col-cat">
+            <div class="lbl">카테고리</div>
+            <div id="ap-cat-list"></div>
+            <button class="btn" id="btn-ap-add-cat" style="width:100%;margin-top:6px;background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18);">+ 추가</button>
+          </div>
+          <div class="ap-col-item">
+            <div class="lbl">결재 종류</div>
+            <div id="ap-item-list"></div>
+            <button class="btn" id="btn-ap-add-item" style="width:100%;margin-top:6px;display:none;">+ 추가</button>
+          </div>
+          <div class="ap-col-steps">
+            <div id="ap-step-editor"><div class="empty">왼쪽에서 결재 종류를 선택하세요.</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -930,6 +1068,40 @@
   </div>
 </div>
 
+<!-- ============ 전체 교사 시간표 관리 모달 ============ -->
+<div class="modal-overlay" id="tt-manage-overlay">
+  <div class="modal-box tt-manage-box">
+    <div class="modal-head">
+      <h3>전체 교사 시간표 관리</h3>
+      <button type="button" class="modal-close" id="tt-manage-close">✕</button>
+    </div>
+    <div class="tt-manage-toolbar">
+      <div class="tt-field">
+        <label>교사 선택</label>
+        <select id="tt-manage-select"></select>
+      </div>
+      <button type="button" class="btn" id="tt-manage-delete-teacher">삭제</button>
+      <div class="tt-manage-spacer"></div>
+      <div class="tt-field">
+        <label>교사 이름</label>
+        <input type="text" id="tt-manage-new-name" placeholder="예: 홍길동">
+      </div>
+      <div class="tt-field">
+        <label>교과</label>
+        <input type="text" id="tt-manage-new-dept" placeholder="예: 수학">
+      </div>
+      <button type="button" class="btn btn-primary" id="tt-manage-add-teacher">+ 추가</button>
+    </div>
+    <div style="overflow-x:auto;max-height:56vh;">
+      <table class="tt-manage-table" id="tt-manage-table"></table>
+    </div>
+    <div class="modal-actions" style="margin-top:14px;">
+      <button type="button" class="btn" id="tt-manage-cancel">닫기</button>
+      <button type="button" class="btn btn-primary" id="tt-manage-save">저장</button>
+    </div>
+  </div>
+</div>
+
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
@@ -1041,6 +1213,10 @@ const DATA = {
 
   // 자료 취합 — 각 항목: {id, title, subType(이수증만), deadline, fileCount(해당 유형만), members:[...], submissions:{이름:true/false}}
   collectItems: { cert: [], receipt: [], observe: [], eval: [], etc: [] },
+
+  // 주간/월간 계획 — 부서 목록 + 계획 항목
+  plannerDepts: ["교무부","인성부","교육과정부","평가부","정보건강부","창의인재부","수업혁신부","진로부","1학년부","2학년부","3학년부","행정실","수석","교감/교장"],
+  deptPlans: [], // {id, dept, date(YYYY-MM-DD), content}
   gradeTasks: [],
   // 각 항목 형식: {id, name, due(YYYY-MM-DD, 선택), url(선택), doneBy:[bool, ...]} (doneBy는 gradeMembers와 같은 순서)
 
@@ -1610,6 +1786,204 @@ function refreshCollectView(){
   renderCollectList();
   renderCollectDetail();
 }
+
+/* ---------------------------------------------------------
+   업무 정보 — 주간/월간 계획
+--------------------------------------------------------- */
+let plannerMode = "week"; // "week" | "month"
+let plannerRefDate = new Date(DATA.today);
+
+function isoOfDate(d){
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function getMondayOf(date){
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + diff);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+// ISO 8601 기준 정확한 주차 계산 (월요일 시작, 그 주의 목요일이 속한 연도 기준)
+function getISOWeek(date){
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = (d.getUTCDay() + 6) % 7; // 월=0 ... 일=6
+  d.setUTCDate(d.getUTCDate() - dayNum + 3); // 이번 주 목요일
+  const isoYear = d.getUTCFullYear();
+  const firstThursday = new Date(Date.UTC(isoYear, 0, 4));
+  const firstDayNum = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayNum + 3);
+  const week = 1 + Math.round((d - firstThursday) / (7 * 86400000));
+  return {week, isoYear};
+}
+function scheduleItemsForDate(dateObj){
+  const m = dateObj.getMonth(), d = dateObj.getDate();
+  return DATA.schedule.filter(it => {
+    const md = parseScheduleMD(it.date);
+    return md && md.month === m && md.day === d;
+  });
+}
+
+function renderPlannerWeek(){
+  const monday = getMondayOf(plannerRefDate);
+  const days = [];
+  for(let i = 0; i < 5; i++){ const d = new Date(monday); d.setDate(monday.getDate() + i); days.push(d); }
+  const dowNames = ["일","월","화","수","목","금","토"];
+  const todayIso = isoOfDate(DATA.today);
+
+  const isoWk = getISOWeek(monday);
+  document.getElementById("planner-label").textContent =
+    `${isoWk.isoYear}년 ${monday.getMonth() + 1}월 ${isoWk.week}주`;
+
+  const headHtml = `<tr><th class="pl-dept-col">구분</th>${days.map(d => {
+    const iso = isoOfDate(d);
+    return `<th class="${iso === todayIso ? "pl-today-col" : ""}">${dowNames[d.getDay()]}<span class="pl-date">${d.getMonth() + 1}/${d.getDate()}</span></th>`;
+  }).join("")}</tr>`;
+
+  let rows = `<tr class="pl-sched-row"><td class="pl-dept-col">학사일정</td>${days.map(d => {
+    const items = scheduleItemsForDate(d);
+    return `<td class="pl-cell">${items.map(it => `<div class="pl-item">${it.label}</div>`).join("") || ""}</td>`;
+  }).join("")}</tr>`;
+
+  DATA.plannerDepts.forEach(dept => {
+    rows += `<tr><td class="pl-dept-col">${dept}</td>${days.map(d => {
+      const iso = isoOfDate(d);
+      const items = DATA.deptPlans.filter(p => p.dept === dept && p.date === iso);
+      const itemsHtml = items.map(p => `<div class="pl-item" data-plan-id="${p.id}">${p.content}</div>`).join("");
+      return `<td class="pl-cell" data-dept="${escAttr(dept)}" data-date="${iso}">${itemsHtml}<button type="button" class="pl-add-btn" data-dept="${escAttr(dept)}" data-date="${iso}">+</button></td>`;
+    }).join("")}</tr>`;
+  });
+
+  document.getElementById("planner-table").innerHTML = `<thead>${headHtml}</thead><tbody>${rows}</tbody>`;
+}
+
+function renderPlannerMonth(){
+  const year = plannerRefDate.getFullYear(), month = plannerRefDate.getMonth();
+  document.getElementById("planner-label").textContent = `${year}년 ${month + 1}월`;
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const rowsData = [];
+  for(let d = 1; d <= daysInMonth; d++){
+    const dateObj = new Date(year, month, d);
+    scheduleItemsForDate(dateObj).forEach(it => rowsData.push({date:isoOfDate(dateObj), dept:"학사일정", content:it.label, sched:true}));
+  }
+  DATA.deptPlans.forEach(p => {
+    const md = p.date ? p.date.split("-").map(Number) : null;
+    if(md && md[0] === year && md[1] - 1 === month) rowsData.push({...p, sched:false});
+  });
+  rowsData.sort((a, b) => a.date.localeCompare(b.date));
+
+  const el = document.getElementById("planner-month-table");
+  if(!rowsData.length){
+    el.innerHTML = `<tr><td class="empty" style="padding:40px;">이 달에 등록된 계획이 없습니다.</td></tr>`;
+    return;
+  }
+  el.innerHTML = `
+    <thead><tr><th>날짜</th><th>부서</th><th>내용</th><th>관리</th></tr></thead>
+    <tbody>
+      ${rowsData.map(r => `
+        <tr>
+          <td class="pm-date">${r.date}</td>
+          <td class="pm-dept">${r.dept}</td>
+          <td>${r.content}</td>
+          <td class="pm-manage">${r.sched ? "" : `<button type="button" class="task-del" data-plan-del="${r.id}">삭제</button>`}</td>
+        </tr>
+      `).join("")}
+    </tbody>
+  `;
+}
+
+function refreshPlannerView(){
+  if(plannerMode === "week") renderPlannerWeek();
+  else renderPlannerMonth();
+}
+
+document.getElementById("btn-planner-week").addEventListener("click", () => {
+  plannerMode = "week";
+  document.getElementById("btn-planner-week").classList.add("active");
+  document.getElementById("btn-planner-month").classList.remove("active");
+  document.getElementById("planner-week-wrap").style.display = "block";
+  document.getElementById("planner-month-wrap").style.display = "none";
+  refreshPlannerView();
+});
+document.getElementById("btn-planner-month").addEventListener("click", () => {
+  plannerMode = "month";
+  document.getElementById("btn-planner-month").classList.add("active");
+  document.getElementById("btn-planner-week").classList.remove("active");
+  document.getElementById("planner-week-wrap").style.display = "none";
+  document.getElementById("planner-month-wrap").style.display = "block";
+  refreshPlannerView();
+});
+document.getElementById("btn-planner-prev").addEventListener("click", () => {
+  if(plannerMode === "week") plannerRefDate.setDate(plannerRefDate.getDate() - 7);
+  else plannerRefDate.setMonth(plannerRefDate.getMonth() - 1);
+  refreshPlannerView();
+});
+document.getElementById("btn-planner-next").addEventListener("click", () => {
+  if(plannerMode === "week") plannerRefDate.setDate(plannerRefDate.getDate() + 7);
+  else plannerRefDate.setMonth(plannerRefDate.getMonth() + 1);
+  refreshPlannerView();
+});
+document.getElementById("btn-planner-today").addEventListener("click", () => {
+  plannerRefDate = new Date(DATA.today);
+  refreshPlannerView();
+});
+document.getElementById("btn-planner-print").addEventListener("click", () => window.print());
+
+document.getElementById("btn-planner-add").addEventListener("click", () => {
+  openModal("계획 입력", [
+    {key:"dept", label:"부서", type:"select", options:DATA.plannerDepts.map(d => ({value:d, label:d}))},
+    {key:"date", label:"날짜", type:"date", value:isoOfDate(plannerMode === "week" ? getMondayOf(plannerRefDate) : plannerRefDate)},
+    {key:"content", label:"내용", placeholder:"계획 내용을 입력하세요"},
+  ], (v) => {
+    if(!v.dept || !v.date || !v.content) return;
+    DATA.deptPlans.push({id:"pl" + Date.now(), dept:v.dept, date:v.date, content:v.content});
+    refreshPlannerView();
+    fsSave("deptPlans");
+  });
+});
+
+document.getElementById("planner-table").addEventListener("click", (e) => {
+  const addBtn = e.target.closest(".pl-add-btn");
+  if(addBtn){
+    const dept = addBtn.dataset.dept, date = addBtn.dataset.date;
+    openModal("계획 입력", [
+      {type:"note", tone:"blue", html:`<b>${dept}</b> · ${date}`},
+      {key:"content", label:"내용", placeholder:"계획 내용을 입력하세요"},
+    ], (v) => {
+      if(!v.content) return;
+      DATA.deptPlans.push({id:"pl" + Date.now(), dept, date, content:v.content});
+      refreshPlannerView();
+      fsSave("deptPlans");
+    });
+    return;
+  }
+  const item = e.target.closest(".pl-item[data-plan-id]");
+  if(item){
+    const plan = DATA.deptPlans.find(p => p.id === item.dataset.planId);
+    if(!plan) return;
+    openModal("계획 수정", [
+      {type:"note", tone:"blue", html:`<b>${plan.dept}</b> · ${plan.date}`},
+      {key:"content", label:"내용", value:plan.content},
+    ], (v) => {
+      if(!v.content){
+        DATA.deptPlans = DATA.deptPlans.filter(p => p.id !== plan.id);
+      } else {
+        plan.content = v.content;
+      }
+      refreshPlannerView();
+      fsSave("deptPlans");
+    });
+  }
+});
+
+document.getElementById("planner-month-table").addEventListener("click", (e) => {
+  const delBtn = e.target.closest("[data-plan-del]");
+  if(!delBtn) return;
+  DATA.deptPlans = DATA.deptPlans.filter(p => p.id !== delBtn.dataset.planDel);
+  refreshPlannerView();
+  fsSave("deptPlans");
+});
 
 function buildCollectFields(cfg, existing){
   const fields = [];
@@ -2190,7 +2564,7 @@ function fillTeacherIndividualSelect(){
   const sel = document.getElementById("tt-individual-select");
   if(!sel) return;
   const current = sel.value;
-  sel.innerHTML = `<option value="">전체 교사 보기</option>` +
+  sel.innerHTML = `<option value="">개별 출력 — 교사 선택</option>` +
     DATA.teachers.map(t => `<option value="${t.name}">${t.dept ? "[" + t.dept + "] " : ""}${t.name}</option>`).join("");
   if(DATA.teachers.some(t => t.name === current)) sel.value = current;
 }
@@ -2242,6 +2616,116 @@ document.getElementById("tt-individual-select").addEventListener("change", (e) =
   }
 });
 document.getElementById("btn-tt-print-individual").addEventListener("click", () => window.print());
+
+/* ---------------------------------------------------------
+   전체 교사 시간표 관리 모달
+--------------------------------------------------------- */
+let ttManageCurrentTeacher = null;
+
+function fillTeacherManageSelect(){
+  const sel = document.getElementById("tt-manage-select");
+  sel.innerHTML = DATA.teachers.map(t => `<option value="${escAttr(t.name)}">${t.name} (${t.dept || "-"})</option>`).join("");
+}
+
+function renderTeacherManageGrid(teacherName){
+  const table = document.getElementById("tt-manage-table");
+  if(!teacherName){ table.innerHTML = `<tr><td class="empty" style="padding:30px;">등록된 교사가 없습니다. 오른쪽에서 새 교사를 추가해주세요.</td></tr>`; return; }
+  const days = DATA.ttDays;
+  const maxP = Math.max(0, ...days.map(d => DATA.ttPeriods[d] || 0));
+  let thead = `<tr><th>교시</th>${days.map(d => `<th>${d}(${DATA.ttPeriods[d] || 0}교시)</th>`).join("")}</tr>`;
+  let rows = "";
+  for(let p = 1; p <= maxP; p++){
+    rows += `<tr><td class="tt-manage-p">${p}</td>`;
+    days.forEach(d => {
+      const within = p <= (DATA.ttPeriods[d] || 0);
+      if(!within){ rows += `<td class="tt-manage-disabled"></td>`; return; }
+      const cell = (DATA.teacherTimetable[teacherName] || {})[d]?.[p - 1];
+      rows += `<td>
+        <input type="text" class="tt-cell-subject" data-day="${d}" data-period="${p}" placeholder="과목명" value="${escAttr(cell?.subject || "")}">
+        <input type="text" class="tt-cell-class" data-day="${d}" data-period="${p}" placeholder="반" value="${escAttr(cell?.cls || "")}">
+      </td>`;
+    });
+    rows += `</tr>`;
+  }
+  table.innerHTML = `<thead>${thead}</thead><tbody>${rows}</tbody>`;
+}
+
+// 현재 그리드에 입력된 내용을 DATA.teacherTimetable에 반영 (교사 전환·저장 시 호출)
+function commitTeacherManageGrid(teacherName){
+  if(!teacherName) return;
+  const table = document.getElementById("tt-manage-table");
+  const days = DATA.ttDays;
+  if(!DATA.teacherTimetable[teacherName]) DATA.teacherTimetable[teacherName] = {};
+  days.forEach(d => { DATA.teacherTimetable[teacherName][d] = new Array(DATA.ttPeriods[d] || 0).fill(null); });
+  table.querySelectorAll(".tt-cell-subject").forEach(inp => {
+    const d = inp.dataset.day, p = +inp.dataset.period;
+    const subj = inp.value.trim();
+    const clsInput = table.querySelector(`.tt-cell-class[data-day="${d}"][data-period="${p}"]`);
+    const cls = clsInput ? clsInput.value.trim() : "";
+    if(subj) DATA.teacherTimetable[teacherName][d][p - 1] = {subject:subj, cls};
+    else DATA.teacherTimetable[teacherName][d][p - 1] = null;
+  });
+}
+
+function closeTeacherManageModal(){
+  document.getElementById("tt-manage-overlay").classList.remove("open");
+}
+
+document.getElementById("btn-tt-manage").addEventListener("click", () => {
+  fillTeacherManageSelect();
+  ttManageCurrentTeacher = DATA.teachers[0]?.name || null;
+  document.getElementById("tt-manage-select").value = ttManageCurrentTeacher || "";
+  renderTeacherManageGrid(ttManageCurrentTeacher);
+  document.getElementById("tt-manage-overlay").classList.add("open");
+});
+document.getElementById("tt-manage-close").addEventListener("click", closeTeacherManageModal);
+document.getElementById("tt-manage-cancel").addEventListener("click", closeTeacherManageModal);
+document.getElementById("tt-manage-overlay").addEventListener("click", (e) => {
+  if(e.target.id === "tt-manage-overlay") closeTeacherManageModal();
+});
+
+document.getElementById("tt-manage-select").addEventListener("change", (e) => {
+  commitTeacherManageGrid(ttManageCurrentTeacher); // 교사 바꾸기 전에 지금까지 입력한 내용 보존
+  ttManageCurrentTeacher = e.target.value;
+  renderTeacherManageGrid(ttManageCurrentTeacher);
+});
+
+document.getElementById("tt-manage-add-teacher").addEventListener("click", () => {
+  const name = document.getElementById("tt-manage-new-name").value.trim();
+  const dept = document.getElementById("tt-manage-new-dept").value.trim();
+  if(!name){ alert("교사 이름을 입력하세요."); return; }
+  if(DATA.teachers.some(t => t.name === name)){ alert("이미 존재하는 이름입니다."); return; }
+  commitTeacherManageGrid(ttManageCurrentTeacher);
+  DATA.teachers.push({name, dept, color: colorForDept(dept, DATA.teachers.length)});
+  DATA.teacherTimetable[name] = {};
+  DATA.ttDays.forEach(d => { DATA.teacherTimetable[name][d] = new Array(DATA.ttPeriods[d] || 0).fill(null); });
+  document.getElementById("tt-manage-new-name").value = "";
+  document.getElementById("tt-manage-new-dept").value = "";
+  fillTeacherManageSelect();
+  document.getElementById("tt-manage-select").value = name;
+  ttManageCurrentTeacher = name;
+  renderTeacherManageGrid(name);
+});
+
+document.getElementById("tt-manage-delete-teacher").addEventListener("click", () => {
+  const name = document.getElementById("tt-manage-select").value;
+  if(!name) return;
+  if(!confirm(`"${name}" 선생님을 삭제할까요? 시간표 정보도 함께 삭제됩니다.`)) return;
+  DATA.teachers = DATA.teachers.filter(t => t.name !== name);
+  delete DATA.teacherTimetable[name];
+  fillTeacherManageSelect();
+  ttManageCurrentTeacher = document.getElementById("tt-manage-select").value || null;
+  renderTeacherManageGrid(ttManageCurrentTeacher);
+});
+
+document.getElementById("tt-manage-save").addEventListener("click", () => {
+  commitTeacherManageGrid(ttManageCurrentTeacher);
+  renderTeacherTimetable();
+  fillTeacherIndividualSelect();
+  fillSwapSelectors();
+  fsSave("teacherData");
+  closeTeacherManageModal();
+});
 
 function fillSwapSelectors(){
   const teacherSel = document.getElementById("swap-teacher");
@@ -2719,6 +3203,7 @@ function startRealtimeMode(){
   fsListen("guidanceRecords", (v) => { DATA.guidanceRecords = v; refreshGuidanceAll(); });
   fsListen("guidanceThresholds", (v) => { DATA.guidanceThresholds = v; renderGuidanceStats(); renderGuidanceSummary(); });
   fsListen("collectItems", (v) => { DATA.collectItems = v; refreshCollectView(); });
+  fsListen("deptPlans", (v) => { DATA.deptPlans = v; refreshPlannerView(); });
   fsListen("teacherData", (v) => {
     DATA.teachers = v.teachers; DATA.teacherTimetable = v.teacherTimetable;
     DATA.ttDays = v.ttDays; DATA.ttPeriods = v.ttPeriods;
@@ -2786,14 +3271,27 @@ document.getElementById("collect-subtabs").addEventListener("click", (e) => {
   refreshCollectView();
 });
 
-document.getElementById("workinfo-subtabs").addEventListener("click", (e) => {
-  const btn = e.target.closest("button[data-sub]");
+const WI_PANEL_DISPLAY = {
+  timetable: "flex",   // .workinfo-layout
+  planner:   "block",
+  duty:      "block",
+  cca:       "block",
+  shop:      "block",
+  stats:     "block",
+  daily:     "block",
+  approval:  "grid",   // .ap-layout
+};
+document.getElementById("wi-sidebar").addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-wi]");
   if(!btn) return;
-  document.querySelectorAll("#workinfo-subtabs button").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll("#wi-sidebar button").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-  const isTT = btn.dataset.sub === "timetable";
-  document.getElementById("workinfo-panel-timetable").style.display = isTT ? "flex" : "none";
-  document.getElementById("workinfo-panel-approval").style.display = isTT ? "none" : "grid";
+  const target = btn.dataset.wi;
+  Object.keys(WI_PANEL_DISPLAY).forEach(key => {
+    const panel = document.getElementById(`workinfo-panel-${key}`);
+    if(panel) panel.style.display = key === target ? WI_PANEL_DISPLAY[key] : "none";
+  });
+  if(target === "planner") refreshPlannerView();
 });
 
 /* ---------------------------------------------------------
